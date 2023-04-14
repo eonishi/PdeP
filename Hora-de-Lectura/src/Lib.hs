@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use infix" #-}
+{-# HLINT ignore "Eta reduce" #-}
 module Lib
     (
     ) where
@@ -65,16 +66,15 @@ paginas :: Libro -> Int
 paginas (_ ,_ , paginas) = paginas 
 
 
-
 -- Promedio de las hojas de mi biblioteca
-promedioDeHojas :: Biblioteca -> Int
+promedioDeHojas :: Biblioteca -> Paginas
 promedioDeHojas biblioteca = div (cantidadDeHojas biblioteca) (length biblioteca)
 
-cantidadDeHojas :: Biblioteca -> Int
-cantidadDeHojas = sum.listaDePaginas
+cantidadDeHojas :: Biblioteca -> Paginas
+cantidadDeHojas biblioteca = (sum.listaDePaginas) biblioteca
 
-listaDePaginas :: Biblioteca -> [Int]
-listaDePaginas  = map paginas
+listaDePaginas :: Biblioteca -> [Paginas]
+listaDePaginas biblioteca  = map paginas biblioteca
 
 -- Lectura Obligatoria
 lecturaObligatoria :: Libro -> Bool
@@ -88,12 +88,36 @@ perteneceSagaEragon libro = elem libro sagaEragon
 
 esMismoLibro :: Libro -> Libro -> Bool
 esMismoLibro unLibro otroLibro = nombre unLibro == nombre otroLibro &&
-                             autor unLibro == autor otroLibro &&
-                             paginas unLibro == paginas otroLibro
+                                autor unLibro == autor otroLibro &&
+                                paginas unLibro == paginas otroLibro
 
 -- Biblioteca fantasiosa
---fantasiosa :: Biblioteca -> Bool
---fantasiosa biblioteca = tienePaolini || tieneGaiman
---
---tienePaolini :: Biblioteca -> Bool
---tienePaolini biblioteca = "Christopher Paolini" ´elem´ autor biblioteca
+esBibliotecaFantasiosa :: Biblioteca -> Bool
+esBibliotecaFantasiosa biblioteca = any esLibroFantasioso biblioteca
+
+esDeAutor :: Libro -> Autor -> Bool -- Funcion auxiliar para saber si un libro es de un autor
+esDeAutor unLibro unAutor = autor unLibro == unAutor
+
+esLibroFantasioso :: Libro -> Bool
+esLibroFantasioso unLibro = esDeAutor unLibro "Christopher Paolini" || esDeAutor unLibro "Neil Gaiman"
+
+
+-- Nombre de la biblioteca
+nombreDeLaBiblioteca :: Biblioteca -> Nombre
+nombreDeLaBiblioteca nombre = (sacarVocales.unirNombres) nombre 
+
+sacarVocales :: Nombre -> Nombre
+sacarVocales nombre = filter (`notElem` "aAeEiIoOuU -áÁéÉíÍóÓúÚ") nombre
+
+unirNombres :: Biblioteca -> Nombre
+unirNombres biblioteca =  (concat.listaDeNombres) biblioteca
+
+listaDeNombres :: Biblioteca -> [Nombre]
+listaDeNombres biblioteca = map nombre biblioteca
+
+-- Biblioteca Ligera
+bibliotecaLigera :: Biblioteca -> Bool
+bibliotecaLigera biblioteca = all esLibroLigero biblioteca
+
+esLibroLigero :: Libro -> Bool
+esLibroLigero libro = paginas libro < 40
