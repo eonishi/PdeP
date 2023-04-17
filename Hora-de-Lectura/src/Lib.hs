@@ -111,6 +111,7 @@ sacarVocales nombre = filter (`notElem` "aAeEiIoOuU -áÁéÉíÍóÓúÚ") nomb
 
 unirNombres :: Biblioteca -> Nombre
 unirNombres biblioteca =  (concat.listaDeNombres) biblioteca
+-- uniNombres biblioteca = concatMap nombre biblioteca
 
 listaDeNombres :: Biblioteca -> [Nombre]
 listaDeNombres biblioteca = map nombre biblioteca
