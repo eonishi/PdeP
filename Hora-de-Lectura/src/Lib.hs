@@ -122,3 +122,17 @@ bibliotecaLigera biblioteca = all esLibroLigero biblioteca
 
 esLibroLigero :: Libro -> Bool
 esLibroLigero libro = paginas libro < 40
+
+-- Funcion que devuelve el genero del libro
+genero :: Libro -> String
+genero unLibro 
+    | autor unLibro == "Stephen King" = "Terror"
+    | esAutorJapones unLibro = "Manga"
+    | esLibroLigero unLibro = "Comic"
+    | otherwise = "No clasificado"
+
+autoresJaponeses :: [Autor]
+autoresJaponeses = ["Hajime Isayama"]
+
+esAutorJapones :: Libro -> Bool
+esAutorJapones (_, autor, _) = autor `elem` autoresJaponeses 
