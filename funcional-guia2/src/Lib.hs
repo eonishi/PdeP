@@ -1,6 +1,4 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# OPTIONS_GHC -Wno-Wunused-top-binds #-}
-{-# OPTIONS_GHC -Wno-Wtype-defaults #-}
 {-# HLINT ignore "Use infix" #-}
 {-# HLINT ignore "Eta reduce" #-}
 
