@@ -52,3 +52,14 @@ manuel = Jugador{
     propiedades = [],
     acciones = [enojarse]
 }
+
+-- Declaracion de las ACCIONES
+pasarPorElBanco :: Accion
+pasarPorElBanco  unJugador =  cambiarTacticaACompradorCompulsivo . sumarDinero 40 $ unJugador
+
+sumarDinero :: Int -> Jugador -> Jugador
+sumarDinero cantidad unJugador = unJugador {dinero = dinero unJugador + cantidad}
+
+cambiarTacticaACompradorCompulsivo :: Jugador -> Jugador
+cambiarTacticaACompradorCompulsivo unJugador = unJugador {tactica = "Comprador Compulsivo"}
+
