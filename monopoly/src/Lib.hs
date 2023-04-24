@@ -70,3 +70,10 @@ pagarAccionistas unJugador
 
 restarDinero :: Int -> Jugador -> Jugador
 restarDinero cantidad unJugador = unJugador {dinero = dinero unJugador - cantidad}
+
+enojarse :: Accion
+enojarse unJugador = agregarAccion gritar . sumarDinero 50 $ unJugador
+
+agregarAccion :: Accion -> Jugador -> Jugador
+agregarAccion unaAccion unJugador = unJugador {acciones = unaAccion : acciones unJugador}
+
