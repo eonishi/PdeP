@@ -63,3 +63,10 @@ sumarDinero cantidad unJugador = unJugador {dinero = dinero unJugador + cantidad
 cambiarTacticaACompradorCompulsivo :: Jugador -> Jugador
 cambiarTacticaACompradorCompulsivo unJugador = unJugador {tactica = "Comprador Compulsivo"}
 
+pagarAccionistas :: Accion 
+pagarAccionistas unJugador 
+    | tactica unJugador == "Accionista" = sumarDinero 200 unJugador
+    | otherwise = restarDinero 100 unJugador
+
+restarDinero :: Int -> Jugador -> Jugador
+restarDinero cantidad unJugador = unJugador {dinero = dinero unJugador - cantidad}
