@@ -77,3 +77,5 @@ enojarse unJugador = agregarAccion gritar . sumarDinero 50 $ unJugador
 agregarAccion :: Accion -> Jugador -> Jugador
 agregarAccion unaAccion unJugador = unJugador {acciones = unaAccion : acciones unJugador}
 
+gritar :: Accion
+gritar unJugador = unJugador {nombre = "AHHHH" ++ nombre unJugador}
