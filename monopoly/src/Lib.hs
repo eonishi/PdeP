@@ -30,7 +30,7 @@ data Propiedad = Propiedad {
 --    gritar              :: Jugador -> Jugador,
 --    subastar            :: Jugador -> Jugador,
 --    cobrarAlquileres    :: Jugador -> Jugador
---} ¿¿se puede hacer hacer Accion con un data constructors??
+--} ¿¿se puede hacer hacer Accion con un data constructors?? no tiene sentido porque no es un tipo de dato
 
 type Accion = Jugador -> Jugador 
 
@@ -61,7 +61,7 @@ sumarDinero :: Int -> Jugador -> Jugador
 sumarDinero cantidad unJugador = unJugador {dinero = dinero unJugador + cantidad}
 
 cambiarTacticaACompradorCompulsivo :: Jugador -> Jugador
-cambiarTacticaACompradorCompulsivo unJugador = unJugador {tactica = "Comprador Compulsivo"}
+cambiarTacticaACompradorCompulsivo unJugador = unJugador {tactica = "Comprador compulsivo"}
 
 pagarAccionistas :: Accion 
 pagarAccionistas unJugador 
@@ -79,3 +79,12 @@ agregarAccion unaAccion unJugador = unJugador {acciones = unaAccion : acciones u
 
 gritar :: Accion
 gritar unJugador = unJugador {nombre = "AHHHH" ++ nombre unJugador}
+
+subastar :: Propiedad -> Accion --hacer
+subastar  unaPropiedad unJugador 
+    | tactica unJugador == "Oferente singular" || tactica unJugador == "Accionista" = pagarPropiedad unaPropiedad unJugador
+    | otherwise = unJugador
+
+pagarPropiedad :: Propiedad -> Jugador -> Jugador
+pagarPropiedad unaPropiedad unJugador = unJugador { propiedades = unaPropiedad : propiedades unJugador, 
+                                                    dinero = dinero unJugador - precio unaPropiedad }
