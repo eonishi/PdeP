@@ -34,3 +34,21 @@ data Propiedad = Propiedad {
 
 type Accion = Jugador -> Jugador 
 
+-- Defino a los jugadores
+carolina :: Jugador
+carolina = Jugador {
+    nombre = "Carolina",
+    dinero = 500,
+    tactica = "Accionista",
+    propiedades = [],
+    acciones = [ pagarAccionistas ]
+}
+
+manuel :: Jugador
+manuel = Jugador{
+    nombre = "Manuel",
+    dinero = 500,
+    tactica = "Oferente singular",
+    propiedades = [],
+    acciones = [enojarse]
+}
