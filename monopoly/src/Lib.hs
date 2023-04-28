@@ -101,4 +101,15 @@ pagarPropiedad unaPropiedad unJugador =
     }
 
 cobrarAlquileres :: Accion
-cobrarAlquileres unJugador = sumar . valoresDePropiedades $ unJugador
+cobrarAlquileres unJugador = totalAlquiler unJugador `sumarDinero` unJugador
+
+totalAlquiler :: Jugador -> Dinero
+totalAlquiler unJugador = sum . listaAlquiler $ unJugador
+
+listaAlquiler :: Jugador -> [Dinero]
+listaAlquiler unJugador = map valorDelAlquiler (propiedades unJugador)
+
+valorDelAlquiler :: Propiedad -> Dinero
+valorDelAlquiler unaPropiedad
+  | precio unaPropiedad < 150 = 10
+  | otherwise = 20
