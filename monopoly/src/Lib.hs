@@ -61,6 +61,22 @@ manuel =
       acciones = [enojarse]
     }
 
+-- Defino las propiedades
+casaDePaja :: Propiedad
+casaDePaja = Propiedad {nombrePropiedad = "Casa de paja", precio = 100}
+
+casaDeMadera :: Propiedad
+casaDeMadera = Propiedad {nombrePropiedad = "Casa de madera", precio = 200}
+
+casaDeLadrillo :: Propiedad
+casaDeLadrillo = Propiedad {nombrePropiedad = "Casa de ladrillo", precio = 130}
+
+casaDeDulces :: Propiedad
+casaDeDulces = Propiedad {nombrePropiedad = "Casa de dulces", precio = 400}
+
+casaDePapel :: Propiedad
+casaDePapel = Propiedad {nombrePropiedad = "Casa de papel", precio = 500} --Casa de papel??? (no la vi)
+
 -- Declaracion de las ACCIONES
 pasarPorElBanco :: Accion
 pasarPorElBanco unJugador = cambiarTacticaACompradorCompulsivo . sumarDinero 40 $ unJugador
