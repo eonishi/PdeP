@@ -75,7 +75,7 @@ casaDeDulces :: Propiedad
 casaDeDulces = Propiedad {nombrePropiedad = "Casa de dulces", precio = 400}
 
 casaDePapel :: Propiedad
-casaDePapel = Propiedad {nombrePropiedad = "Casa de papel", precio = 500} --Casa de papel??? (no la vi)
+casaDePapel = Propiedad {nombrePropiedad = "Casa de papel", precio = 500} -- Casa de papel??? (no la vi)
 
 -- Declaracion de las ACCIONES
 pasarPorElBanco :: Accion
