@@ -49,19 +49,26 @@ carla =
 -- a) Coeficiente de satisfacción
 coeficienteDeSatisfaccion :: Persona -> Int
 coeficienteDeSatisfaccion unaPersona
-  | felicidonios unaPersona > 100 = felicidonios unaPersona * edad unaPersona
-  | felicidonios unaPersona <= 100 && felicidonios unaPersona > 50 = felicidonios unaPersona * cantidadDeSueños unaPersona
+  | esMuyFeliz unaPersona = felicidonios unaPersona * edad unaPersona
+  | esModeradamenteFeliz unaPersona = felicidonios unaPersona * cantidadDeSueños unaPersona
   | otherwise = div (felicidonios unaPersona) 2
-
-cantidadDeSueños :: Persona -> Int
-cantidadDeSueños unaPersona = length (sueñosQueCumplir unaPersona)
 
 -- b) Grado de ambición
 gradoDeAmbicion :: Persona -> Int
 gradoDeAmbicion unaPersona
-  | felicidonios unaPersona > 100 = felicidonios unaPersona * cantidadDeSueños unaPersona
-  | felicidonios unaPersona <= 100 && felicidonios unaPersona > 50 = edad unaPersona * cantidadDeSueños unaPersona
+  | esMuyFeliz unaPersona = felicidonios unaPersona * cantidadDeSueños unaPersona
+  | esModeradamenteFeliz unaPersona = edad unaPersona * cantidadDeSueños unaPersona
   | otherwise = cantidadDeSueños unaPersona * 2
+
+  -- funciones auxiliar para evitar la repeticion de lógica
+esMuyFeliz :: Persona -> Bool
+esMuyFeliz unaPersona = felicidonios unaPersona > 100
+
+esModeradamenteFeliz :: Persona -> Bool
+esModeradamenteFeliz unaPersona = felicidonios unaPersona <= 100 && felicidonios unaPersona > 50
+
+cantidadDeSueños :: Persona -> Int
+cantidadDeSueños unaPersona = length (sueñosQueCumplir unaPersona)
 
 -- Punto 2
 -- a) Nombre largo
