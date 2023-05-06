@@ -60,7 +60,7 @@ gradoDeAmbicion unaPersona
   | esModeradamenteFeliz unaPersona = edad unaPersona * cantidadDeSueños unaPersona
   | otherwise = cantidadDeSueños unaPersona * 2
 
-  -- funciones auxiliar para evitar la repeticion de lógica
+-- funciones auxiliar para evitar la repeticion de lógica
 esMuyFeliz :: Persona -> Bool
 esMuyFeliz unaPersona = felicidonios unaPersona > 100
 
