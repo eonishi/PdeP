@@ -86,28 +86,19 @@ nombreLindo unaPersona = (== 'a') . last . nombre $ unaPersona
 -- Punto 3 (Los posibles sueños)
 -- a)
 recibirseDeCarrera :: Carrera -> Sueño
-recibirseDeCarrera unaCarrera unaPersona =
-  unaPersona
-    { felicidonios = felicidonios unaPersona + 1000,
-      habilidades = unaCarrera : habilidades unaPersona
-    }
+recibirseDeCarrera unaCarrera unaPersona = sumarFelicidad 1000 . agregarHabilidades unaCarrera $ unaPersona
 
 -- b)
 viajarACiudades :: [Ciudades] -> Sueño
-viajarACiudades unasCiudades unaPersona =
-  unaPersona
-    { felicidonios = felicidonios unaPersona + ((* 100) . length $ unasCiudades),
-      edad = edad unaPersona + 1
-    }
+viajarACiudades unasCiudades unaPersona = sumarEdad 1 . sumarFelicidad ((* 100) . length $ unasCiudades) $ unaPersona
 
 -- c)
 enamorarseDeOtraPersona :: Persona -> Sueño
-enamorarseDeOtraPersona unaPersona personaEnamorada =
-  personaEnamorada {felicidonios = felicidonios personaEnamorada + felicidonios unaPersona}
+enamorarseDeOtraPersona unaPersona personaEnamorada = felicidonios unaPersona `sumarFelicidad` personaEnamorada
 
 -- d)
 todoSigaIgual :: Sueño
-todoSigaIgual unaPersona = unaPersona
+todoSigaIgual = id
 
 -- f)
 comboPerfecto :: Sueño
@@ -115,3 +106,9 @@ comboPerfecto unaPersona = sumarFelicidad 100 . viajarACiudades ["Berazategui", 
 
 sumarFelicidad :: Int -> Persona -> Persona
 sumarFelicidad unaCantidad unaPersona = unaPersona {felicidonios = felicidonios unaPersona + unaCantidad}
+
+sumarEdad :: Edad -> Persona -> Persona
+sumarEdad unaEdad unaPersona = unaPersona { edad = unaEdad + edad  unaPersona }
+
+agregarHabilidades :: Habilidad -> Persona -> Persona
+agregarHabilidades unaHabilidad unaPersona = unaPersona { habilidades = unaHabilidad : habilidades unaPersona}
