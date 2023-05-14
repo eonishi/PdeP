@@ -108,7 +108,7 @@ sumarFelicidad :: Int -> Persona -> Persona
 sumarFelicidad unaCantidad unaPersona = unaPersona {felicidonios = felicidonios unaPersona + unaCantidad}
 
 sumarEdad :: Edad -> Persona -> Persona
-sumarEdad unaEdad unaPersona = unaPersona { edad = unaEdad + edad  unaPersona }
+sumarEdad unaEdad unaPersona = unaPersona {edad = unaEdad + edad unaPersona}
 
 agregarHabilidades :: Habilidad -> Persona -> Persona
-agregarHabilidades unaHabilidad unaPersona = unaPersona { habilidades = unaHabilidad : habilidades unaPersona}
+agregarHabilidades unaHabilidad unaPersona = unaPersona {habilidades = unaHabilidad : habilidades unaPersona}
